@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "An app that gives users the opportunity to discuss with people confidentially",
   "main": "server.js",
+  "dependencies": {
+    "express": "~4.5.1",
+    "mongoose": "~3.8.0",
+    "body-parser": "~1.4.2",
+    "method-override": "~2.0.2"
+  },
   "scripts": {
     "test": "say This is a node js project. It comprises mogoose ORM, express and a ton of modules that brings your fullstack project to life."
   },
