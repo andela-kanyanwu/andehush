@@ -21,11 +21,6 @@ console.log(testCon);
 // parse application/json 
 app.use(bodyParser.json());
 
-// parse application/vnd.api+json as json
-app.use(bodyParser.json({
-  type: 'application/vnd.api+json'
-}));
-
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
   extended: true
@@ -39,16 +34,13 @@ app.use(express.static(__dirname + '/public'));
 
 // ROUTES FOR OUR API
 // =============================================================================
-var api = require('./app/routes/api');
+var userRoute = require('./app/routes/user.route');
 
 // more routes for our API will happen here
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
-app.use('/api', api);
-
-// routes ==================================================
-require('./app/routes/api'); // configure our routes
+app.use('/api', userRoute);
 
 // start app ===============================================
 // startup our app at http://localhost:8080
