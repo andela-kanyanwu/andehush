@@ -21,13 +21,23 @@ var User = require('../models/user.model');
   },
 
   listUsers: function(req, res) {
-    User.find(function(err, Users){
+    User.find(function(err, data){
       if (err) {
         res.send(err);
       }
-      res.json(Users);
-    })   
+      res.json(data);
+    });   
+  },
+
+  getUserInfo: function(req, res) {
+    User.findById(req.params.user_id, function(err, data){
+      if (err) {
+        res.send(err);
+      }
+      res.json(data);
+    });
   }
+
 }
 
 module.exports = newUser;
