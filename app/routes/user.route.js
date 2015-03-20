@@ -13,4 +13,10 @@ router.get('/users', User.listUsers);
 //get a single user
 router.get('/users/:user_id', User.getUserInfo);
 
+//Edits and updates user's info
+router.put('/users/:user_id', User.editUserInfo);
+
+//Deletes user's info
+router.delete('/users/:user_id', User.deleteUser);
+
 module.exports = router;
