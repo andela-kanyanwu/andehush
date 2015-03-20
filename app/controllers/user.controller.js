@@ -1,8 +1,5 @@
 var User = require('../models/user.model');
 
-// // Create a new instance of the User model
-// var user = new User();
-
 var newUser = {
 
   addUser: function(req, res, next) {

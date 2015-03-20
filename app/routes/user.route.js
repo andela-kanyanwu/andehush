@@ -19,4 +19,10 @@ router.put('/users/:user_id', User.editUserInfo);
 //Deletes user's info
 router.delete('/users/:user_id', User.deleteUser);
 
+// frontend routes =========================================================
+// route to handle all angular requests
+router.get('*', function(req, res) {
+    res.sendfile('../../public/views/index.html'); // load our public/index.html file
+});
+
 module.exports = router;
