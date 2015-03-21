@@ -1,10 +1,11 @@
 <form ng-submit="registerListener()">
-Username<input type="text" ng-model="listenerUsername"/>
-Password<input type="text" ng-model="listenerPassword"/> 
-Secret<input type="text" ng-model="listenerSecret"/>
-<input type="submit" value="Submit" />
+  Username<input type="text" ng-model="listenerUsername"/>
+  Password<input type="text" ng-model="listenerPassword"/> 
+  Secret<input type="text" ng-model="listenerSecret"/>
+  <input type="submit" value="Submit" />
 </form>
-<div></div>
-
+<div ng-hide="nameErr === 11000">{{message}}</div>
+<div ng-show="nameErr === 11000">Username already exists! Please use a different username</div>
+<div ng-show="listenerUsername === undefined || listenerPassword === undefined || listenerSecret === undefined">Fields cannot be left blank</div>
 
  

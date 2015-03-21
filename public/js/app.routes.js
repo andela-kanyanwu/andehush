@@ -15,6 +15,10 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
       controller: 'UserController'
     })
 
-    $locationProvider.html5Mode(true);
+    // .otherwise ({
+    //   redirectTo: '../views/home.html'
+    // });
+
+    // $locationProvider.html5Mode(true);
 
 }])
