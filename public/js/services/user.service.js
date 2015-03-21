@@ -8,8 +8,8 @@ app.factory('UserFactory', ['$http', function($http){
     },
 
     //creates a new user
-    create: function(){
-      return $http.post('/api/users/new');
+    create: function(listenerInfo){
+      return $http.post('/api/users/new', listenerInfo);
     },
 
     //get a single user
