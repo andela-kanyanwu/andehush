@@ -1,18 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="UserCtrl">
+<html lang="en" ng-app="AndehushApp">
   <head>
     <meta charset="UTF-8">
     <base href="/">
     <title>Andehush</title>
   </head>
 
-  <body ng-controller="UserController">
-  <!--   username<input></input>
-    password<input></input>
-    secret<input></input>
-    <button>Submit</button> -->
-    <button ng-click="users()">Search</button>
-    <div></div>
+  <body>
+
+    <ul>
+      <li><a href="becomeListener">Register to be a listener</a></li>
+      <li><a href>Login</a></li>
+    </ul>
+
+    <div ng-view></div>
+
 
     <script type="text/javascript" src="./lib/angular/angular.js"></script>
     <script type="text/javascript" src="./lib/angular-route/angular-route.js"></script>

@@ -22,7 +22,7 @@ router.delete('/users/:user_id', User.deleteUser);
 // frontend routes =========================================================
 // route to handle all angular requests
 router.get('*', function(req, res) {
-    res.sendfile('../../public/views/index.html'); // load our public/index.html file
+    res.sendfile('../../public/views/home.html'); // load our public/index.html file
 });
 
 module.exports = router;
