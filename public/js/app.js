@@ -1,1 +1,1 @@
-angular.module('AndehushApp', ['ngRoute', 'AppRoutes', 'UserCtrl']);
+angular.module('AndehushApp', ['ngRoute', 'AppRoutes', 'UserCtrl', 'ChatCtrl']);

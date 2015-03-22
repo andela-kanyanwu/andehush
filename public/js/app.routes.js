@@ -15,6 +15,10 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
       controller: 'UserController'
     })
 
+    .when('/chat', {
+      templateUrl: '../views/chat.html',
+      controller: 'ChatController'
+    })
     // .otherwise ({
     //   redirectTo: '../views/home.html'
     // });

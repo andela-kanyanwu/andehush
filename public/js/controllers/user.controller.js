@@ -1,6 +1,6 @@
 var app = angular.module('UserCtrl', ['UserService']);
 
-app.controller('UserController', ['$scope', 'UserFactory', function($scope, UserFactory) {
+app.controller('UserController', ['$scope', 'UserFactory', '$location', function($scope, UserFactory, $location) {
 
   $scope.registerListener = function() {
 
@@ -28,5 +28,9 @@ app.controller('UserController', ['$scope', 'UserFactory', function($scope, User
     $scope.listenerUsername = undefined;
     $scope.listenerPassword = undefined; 
     $scope.listenerSecret = undefined;  
+  }
+
+  $scope.redirect = function(){
+    window.location = "/#/chat";
   }
 }]);
