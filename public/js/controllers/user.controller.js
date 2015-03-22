@@ -10,7 +10,11 @@ app.controller('UserController', ['$scope', 'UserFactory', function($scope, User
       secret: $scope.listenerSecret
     }
 
-    if (($scope.listenerUsername !== undefined) && ($scope.listenerPassword !== undefined) && ($scope.listenerSecret !== undefined)) {
+    //check if any text field is left blank
+    $scope.textBoxUndefined = ($scope.listenerUsername === undefined) || ($scope.listenerPassword === undefined) || ($scope.listenerSecret === undefined);
+
+    //Continue if no text field is left blank
+    if (!$scope.textBoxUndefined) {
 
       UserFactory.create(listenerInfo).success(function(data) {
         $scope.message = "Account successfully created";
@@ -20,6 +24,9 @@ app.controller('UserController', ['$scope', 'UserFactory', function($scope, User
       }).error(function(data, status) {
         console.log("Error: ", data, status);
       });
-    }   
+    }
+    $scope.listenerUsername = undefined;
+    $scope.listenerPassword = undefined; 
+    $scope.listenerSecret = undefined;  
   }
 }]);
