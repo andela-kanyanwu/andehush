@@ -4,6 +4,8 @@ app.controller('UserController', ['$scope', 'UserFactory', '$location', function
 
   $scope.registerListener = function() {
 
+    $scope.message ="";
+
     var listenerInfo = {
       username: $scope.listenerUsername,
       password: $scope.listenerPassword,
