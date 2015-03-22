@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var mongoose = require('mongoose');
 var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 // configuration ===========================================
 
@@ -44,11 +45,19 @@ app.use('/api', userRoute);
 
 // start app ===============================================
 // startup our app at http://localhost:8080
-app.listen(port);
+//app.listen(port);
 
-//for the chat app
-http.listen(3000, function(){
-  console.log('listening on *:3000');
+//for the chat app ================================
+http.listen(8080, function(){
+  console.log('listening on *:8080');
+});
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('chat message', function(data){
+    console.log(data);
+    io.sockets.emit('get msg', data);
+  });
 });
 
 // shoutout to the user                     

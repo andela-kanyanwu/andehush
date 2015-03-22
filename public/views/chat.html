@@ -1,0 +1,8 @@
+<h1>Chat</h1>
+<div id="chat-wrap">
+  <p ng-repeat="msg in msgs track by $index">{{msg}}</p>
+</div>
+<form action="" ng-submit="chat()">
+  <input ng-model="chatInput"/>
+  <input type="submit" value="Send"/>
+</form>
