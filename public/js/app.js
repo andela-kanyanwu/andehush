@@ -1,0 +1,1 @@
+angular.module('AndehushApp', ['ngRoute', 'AppRoutes', 'UserCtrl', 'ChatCtrl']);

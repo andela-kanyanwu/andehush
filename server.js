@@ -4,6 +4,8 @@ var app = express();
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var mongoose = require('mongoose');
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 // configuration ===========================================
 
@@ -15,7 +17,6 @@ var port = process.env.PORT || 8080;
 
 // connect to our database
 var testCon = mongoose.connect(db.url);
-console.log(testCon);
 
 // get all data/stuff of the body (POST) parameters
 // parse application/json 
@@ -44,7 +45,20 @@ app.use('/api', userRoute);
 
 // start app ===============================================
 // startup our app at http://localhost:8080
-app.listen(port);
+//app.listen(port);
+
+//for the chat app ================================
+http.listen(8080, function(){
+  console.log('listening on *:8080');
+});
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('chat message', function(data){
+    console.log(data);
+    io.sockets.emit('get msg', data);
+  });
+});
 
 // shoutout to the user                     
 console.log('Magic happens on port ' + port);

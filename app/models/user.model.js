@@ -6,12 +6,9 @@ var userSchema = new Schema({
     type: String, 
     unique: true
   },
-  password: { 
-    type: String
-  },
-  secret: { 
-    type: String
-  },
+  password: String,
+  secret: String,
+  //status: String,
   createdDate: {
     type: Date,
     default: Date.now
