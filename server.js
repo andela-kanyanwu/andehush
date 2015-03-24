@@ -43,10 +43,12 @@ app.use(passport.initialize());
 // ROUTES FOR OUR API
 // =============================================================================
 var userRoute = require('./app/routes/user.route');
+var chatRoute = require('./app/routes/chat.route');
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/', userRoute);
+app.use('/', chatRoute);
 
 // frontend routes =========================================================
 // route to handle all angular requests
@@ -74,7 +76,6 @@ http.listen(8080, function() {
 
 //require socket.io file for chat
 require('./socket.server')(io);
-;
 
 // shoutout to the user                     
 console.log('Magic happens on port ' + port);
