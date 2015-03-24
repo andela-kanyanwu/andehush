@@ -6,14 +6,17 @@ var methodOverride = require('method-override');
 var mongoose = require('mongoose');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-
-// configuration ===========================================
-
-// config files
-var db = require('./config/db');
+var passport = require('passport');
+var flash = require('connect-flash');
+var morgan = require('morgan');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 
 // set our port
 var port = process.env.PORT || 8080;
+
+// config files
+var db = require('./config/db');
 
 // connect to our database
 var testCon = mongoose.connect(db.url);
@@ -33,28 +36,50 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 // set the static files location /public/img will be /img for users
 app.use(express.static(__dirname + '/public'));
 
+app.use(passport.initialize());
+
+
 // ROUTES FOR OUR API
 // =============================================================================
 var userRoute = require('./app/routes/user.route');
-
-// more routes for our API will happen here
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/api', userRoute);
 
-// start app ===============================================
-// startup our app at http://localhost:8080
-//app.listen(port);
 
-//for the chat app ================================
-http.listen(8080, function(){
+app.use(morgan('dev')); // log every request to the console
+app.use(cookieParser()); // read cookies (needed for auth)
+
+// required for passport
+app.use(session({
+  secret: 'ilovescotchscotchyscotchscotch'
+})); // session secret
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
+require('./config/passport')(passport); // pass passport for configuration
+
+//start port================================
+http.listen(8080, function() {
   console.log('listening on *:8080');
 });
 
-io.on('connection', function(socket){
-  console.log('a user connected');
-  socket.on('chat message', function(data){
+//for the chat app ================================
+// var nsp = io.of('/private-chat');
+// nsp.on('connection', function(socket){
+//   console.log(socket.nsp.server.engine.clientsCount);
+//   console.log('someone connected'); 
+//   socket.on('chat message', function(data){
+//     console.log(data);
+//     nsp.emit('get msg', data);
+//   });
+// });
+
+
+io.on('connection', function(socket) {
+  console.log(socket.nsp.server.engine.clientsCount);
+  socket.on('chat message', function(data) {
     console.log(data);
     io.sockets.emit('get msg', data);
   });

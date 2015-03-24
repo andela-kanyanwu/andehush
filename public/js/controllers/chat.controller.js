@@ -9,16 +9,10 @@ app.controller('ChatController', ['$scope', function($scope) {
     socket.emit('chat message', $scope.chatInput);
     $scope.chatInput = "";
   }
-  
+
+  console.log(socket);
   socket.on('get msg', function(data) {
     $scope.msgs.push(data);
     $scope.$digest();
   });
-
-
-  // $('form').submit(function(){
-  //   socket.emit('chat message', $('#m').val());
-  //   $('#m').val('');
-  //   return false;
-  // });
 }]);

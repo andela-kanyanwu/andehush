@@ -1,6 +1,6 @@
 var app = angular.module('UserService', []);
 
-app.factory('UserFactory', ['$http', function($http){
+app.factory('UserFactory', ['$http', function($http) {
   return {
     //gets all the users
     get: function() {
@@ -8,22 +8,26 @@ app.factory('UserFactory', ['$http', function($http){
     },
 
     //creates a new user
-    create: function(listenerInfo){
+    create: function(listenerInfo) {
       return $http.post('/api/users/new', listenerInfo);
     },
 
+    login: function(listenerInfo) {
+      return $http.post('/api/users/login', listenerInfo);
+    },
+
     //get a single user
-    getSingleUser: function(){
+    getSingleUser: function() {
       return $http.get('/api/users/:user_id');
     },
 
     //update a user's info
-    editUserInfo: function(){
+    editUserInfo: function() {
       return $http.update('/api/users/:user_id');
     },
 
     //deletes a user info
-    deleteUser: function(){
+    deleteUser: function() {
       return $http.delete('/api/users/:user_id');
     }
   }
