@@ -5,13 +5,13 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var mongoose = require('mongoose');
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
 var passport = require('passport');
 var flash = require('connect-flash');
 var morgan = require('morgan');
 var router = express.Router();
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var io = require('socket.io')(http);
 
 // set our port
 var port = process.env.PORT || 8080;
@@ -72,18 +72,9 @@ http.listen(8080, function() {
   console.log('listening on *:8080');
 });
 
-//for the chat app ================================
-// var nsp = io.of('/private-chat');
-// nsp.on('connection', function(socket){
-//   console.log(socket.nsp.server.engine.clientsCount);
-//   console.log('someone connected'); 
-//   socket.on('chat message', function(data){
-//     console.log(data);
-//     nsp.emit('get msg', data);
-//   });
-// });
-
-
+//require socket.io file for chat
+//var chat = require('./app/controllers/socketChat');
+console.log("chat");
 io.on('connection', function(socket) {
   console.log(socket.nsp.server.engine.clientsCount);
   socket.on('chat message', function(data) {

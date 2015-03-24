@@ -8,6 +8,7 @@ app.controller('ChatController', ['$scope', function($scope) {
   $scope.chat = function() {
     socket.emit('chat message', $scope.chatInput);
     $scope.chatInput = "";
+    event.preventDefault();
   }
 
   console.log(socket);
