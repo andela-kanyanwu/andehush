@@ -3,4 +3,7 @@ var Chat = require('../controllers/chat.controller');
 var router = express.Router();
 var path = require('path');
 
-router.get('/users', Chat.getChat);
+router.post('/chats/new', Chat.createChat);
+router.get('/chats', Chat.getChat);
+
+module.exports = router;

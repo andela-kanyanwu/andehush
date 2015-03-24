@@ -20,7 +20,7 @@ var newUser = {
   //   });
   // },
   
-  listUsers: function(req, res, next) {
+  listUsers: function(req, res) {
 
     User.find(function(err, data) {
       if (err) {
@@ -28,7 +28,7 @@ var newUser = {
       } else {
         res.json(data);
       }
-      next();
+      //next();
     });
   },
 
