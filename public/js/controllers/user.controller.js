@@ -1,6 +1,6 @@
 var app = angular.module('UserCtrl', ['UserService']);
 
-app.controller('UserController', ['$scope', 'UserFactory', '$location','$window','$rootScope', function($scope, UserFactory, $location, $window, $rootScope) {
+app.controller('UserController', ['$scope', 'UserFactory', '$location','$window','$rootScope', '$route', '$templateCache', function($scope, UserFactory, $location, $window, $rootScope, $route, $templateCache) {
 
   if($window.sessionStorage["userDetails"]){
     $rootScope.userDetails = JSON.parse(  $window.sessionStorage["userDetails"] );
@@ -41,6 +41,7 @@ app.controller('UserController', ['$scope', 'UserFactory', '$location','$window'
       username: $scope.listenerUsername,
       password: $scope.listenerPassword
     }
+
     UserFactory.login(listenerInfo).success(function(data) {
       console.log("user login :", data);
       console.log("status: ", data.status);
@@ -57,9 +58,15 @@ app.controller('UserController', ['$scope', 'UserFactory', '$location','$window'
     });
   };
 
+  $scope.logout = function() {
+    $window.sessionStorage.clear();
+    $location.path("/");
+    $window.location.reload();
+  }
 
   //redirect to chat window on click of the chat button
-  $scope.redirect = function() {
+  $scope.changeLink = function() {
+    console.log("redirect please");
     $location.path("/chat");
   }
 
