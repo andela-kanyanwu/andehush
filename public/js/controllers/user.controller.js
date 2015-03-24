@@ -1,6 +1,11 @@
 var app = angular.module('UserCtrl', ['UserService']);
 
-app.controller('UserController', ['$scope', 'UserFactory', '$location', '$rootScope', function($scope, UserFactory, $location, $rootScope) {
+app.controller('UserController', ['$scope', 'UserFactory', '$location','$window','$rootScope', function($scope, UserFactory, $location, $window, $rootScope) {
+
+  if($window.sessionStorage["userDetails"]){
+    $rootScope.userDetails = JSON.parse(  $window.sessionStorage["userDetails"] );
+  }
+  
 
   $scope.registerListener = function() {
 
@@ -18,18 +23,15 @@ app.controller('UserController', ['$scope', 'UserFactory', '$location', '$rootSc
 
       UserFactory.create(listenerInfo).success(function(data) {
         if (data.status == 201) {
+          $rootScope.userDetails = data.user.username;
+          $window.sessionStorage["userDetails"] = JSON.stringify( data.user );
           $location.path("/profile");
-          $root
         }
-        $scope.message = "Account successfully created";
-        $scope.nameErr = data.code;
 
       }).error(function(data, status) {
         console.log("Error: ", data, status);
       });
     }
-    $scope.listenerUsername = undefined;
-    $scope.listenerPassword = undefined;
   }
 
 
@@ -46,6 +48,7 @@ app.controller('UserController', ['$scope', 'UserFactory', '$location', '$rootSc
         $location.path("/profile");
         console.log(data.user.username);
         $rootScope.userDetails = data.user.username;
+        $window.sessionStorage["userDetails"] = JSON.stringify( data.user );
       } else {
         $location.path("/login")
       }

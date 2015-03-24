@@ -31,7 +31,8 @@ router.post('/users/new', passport.authenticate('local-signup', {
 }), function(req, res) {
   res.status(201).json({
     msg: "created successfully",
-    status: 201
+    status: 201, 
+    user: req.user
   });
 });
 
