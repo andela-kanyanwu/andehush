@@ -1,7 +1,6 @@
 <form ng-submit="registerListener()">
   Username<input type="text" ng-model="listenerUsername"/>
   Password<input type="password" ng-model="listenerPassword"/> 
-  Secret<input type="text" ng-model="listenerSecret"/>
   <input type="submit" value="Submit" />
 </form>
 <div ng-hide="nameErr === 11000">{{message}}</div>
