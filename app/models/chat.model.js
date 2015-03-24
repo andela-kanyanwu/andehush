@@ -6,7 +6,7 @@ var chatSchema = new Schema({
     type: String, 
     unique: true
   },
-  chatMsg: String,
+  chatMsg: Object,
   date: {
     type: Date,
     default: Date.now

@@ -73,15 +73,8 @@ http.listen(8080, function() {
 });
 
 //require socket.io file for chat
-//var chat = require('./app/controllers/socketChat');
-console.log("chat");
-io.on('connection', function(socket) {
-  console.log(socket.nsp.server.engine.clientsCount);
-  socket.on('chat message', function(data) {
-    console.log(data);
-    io.sockets.emit('get msg', data);
-  });
-});
+require('./socket.server')(io);
+;
 
 // shoutout to the user                     
 console.log('Magic happens on port ' + port);
