@@ -1,6 +1,8 @@
 var app = angular.module('ChatCtrl', []);
 
 app.controller('ChatController', ['$scope', function($scope) {
+  //redirect to chat window on click of the chat button
+
   var socket = io();
 
   $scope.msgs = [];

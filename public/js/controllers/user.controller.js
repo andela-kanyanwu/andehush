@@ -64,9 +64,19 @@ app.controller('UserController', ['$scope', 'UserFactory', '$location','$window'
     $window.location.reload();
   }
 
-  //redirect to chat window on click of the chat button
+  $scope.redirect = function() {
+    $location.path("/listeners");
+  }
+
+  $scope.getListeners = function() {
+    UserFactory.get().success(function(data){
+      $scope.listeners = data;
+    }).error(function(data, status){
+      console.log("Error: ", data, status);
+    })
+  }
+
   $scope.changeLink = function() {
-    console.log("redirect please");
     $location.path("/chat");
   }
 
