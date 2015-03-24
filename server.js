@@ -9,6 +9,7 @@ var io = require('socket.io')(http);
 var passport = require('passport');
 var flash = require('connect-flash');
 var morgan = require('morgan');
+var router = express.Router();
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
@@ -45,7 +46,13 @@ var userRoute = require('./app/routes/user.route');
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
-app.use('/api', userRoute);
+app.use('/', userRoute);
+
+// frontend routes =========================================================
+// route to handle all angular requests
+app.get('*', function(req, res) {
+  res.sendFile( __dirname + '/public/index.html'); // load our public/index.html file
+});
 
 
 app.use(morgan('dev')); // log every request to the console

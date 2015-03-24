@@ -9,6 +9,8 @@ var path = require('path');
 // router.post('/users/new', User.addUser);
 
 // get list of users registered in the database
+
+
 router.get('/users', User.listUsers);
 
 //login
@@ -37,17 +39,13 @@ router.post('/users/login', passport.authenticate('local-login', {
   failureRedirect: '/users/login',
   failureFlash: true
 }), function(req, res) {
-  console.log('login')
   res.status(200).json({
     msg: "login successfully",
-    status: 200
+    status: 200,
+    user: req.user
   })
 });
 
-// frontend routes =========================================================
-// route to handle all angular requests
-router.get('*', function(req, res) {
-  res.sendfile('../../public/views/home.html'); // load our public/index.html file
-});
+
 
 module.exports = router;

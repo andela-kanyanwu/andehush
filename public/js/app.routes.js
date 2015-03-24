@@ -29,10 +29,8 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     templateUrl: '../views/profile.html',
     controller: 'UserController'
   })
-    // .otherwise ({
-    //   redirectTo: '../views/home.html'
-    // });
+   .otherwise ({ redirectTo: '../views/home.html' });
 
-  // $locationProvider.html5Mode(true);
+  $locationProvider.html5Mode(true);
 
 }])

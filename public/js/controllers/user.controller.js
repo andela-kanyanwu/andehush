@@ -1,6 +1,6 @@
 var app = angular.module('UserCtrl', ['UserService']);
 
-app.controller('UserController', ['$scope', 'UserFactory', '$location', function($scope, UserFactory, $location) {
+app.controller('UserController', ['$scope', 'UserFactory', '$location', '$rootScope', function($scope, UserFactory, $location, $rootScope) {
 
   $scope.registerListener = function() {
 
@@ -18,7 +18,8 @@ app.controller('UserController', ['$scope', 'UserFactory', '$location', function
 
       UserFactory.create(listenerInfo).success(function(data) {
         if (data.status == 201) {
-          window.location = "/#/profile";
+          $location.path("/profile");
+          $root
         }
         $scope.message = "Account successfully created";
         $scope.nameErr = data.code;
@@ -39,16 +40,24 @@ app.controller('UserController', ['$scope', 'UserFactory', '$location', function
       password: $scope.listenerPassword
     }
     UserFactory.login(listenerInfo).success(function(data) {
-      console.log(listenerInfo);
-      console.log(data.status);
-      window.location = "/#/profile";
+      console.log("user login :", data);
+      console.log("status: ", data.status);
+      if (data.status === 200) {
+        $location.path("/profile");
+        console.log(data.user.username);
+        $rootScope.userDetails = data.user.username;
+      } else {
+        $location.path("/login")
+      }
     }).error(function(data, status) {
       console.log("Error: ", data, status);
     });
   };
 
+
   //redirect to chat window on click of the chat button
   $scope.redirect = function() {
-    window.location = "/#/chat";
+    $location.path("/chat");
   }
+
 }]);
