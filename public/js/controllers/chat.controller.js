@@ -1,6 +1,6 @@
 var app = angular.module('ChatCtrl', []);
 
-app.controller('ChatController', ['$scope', '$routeParams', '$timeout', function($scope, $routeParams, $timeout) {
+app.controller('ChatController', ['$scope', '$routeParams', '$timeout', '$window', function($scope, $routeParams, $timeout, $window) {
   //redirect to chat window on click of the chat button
 
   var socket = io();
