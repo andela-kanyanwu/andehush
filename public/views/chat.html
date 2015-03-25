@@ -1,11 +1,17 @@
-<h1>Chat</h1>
-<li ng-show="userDetails.username"><a href="#" ng-click="logout()">Log out</a></li>
+<h3>Chat</h3>
 <div id="chat-wrap" ng-repeat="msg in msgs track by $index">
-  <p>{{msg.room}}</p>
-  <p>{{msg.msg}}</p>
+  <div class="row">
+    <div class="col s12 m5">
+      <div class="card-panel white">
+        <span>{{msg.room}}: </span>
+        <p>{{msg.msg}}</p>
+      </div>
+    </div>
+  </div>
 </div>
-<!-- <div ng-bind="room_name"></div> -->
 <form ng-submit="chat()">
-  <input type="text" ng-model="chatInput"/>
-  <input type="submit" value="Send"/>
+  <input type="text" ng-model="chatInput" />
+  <button class="btn waves-effect waves-light #01579b light-blue darken-4" type="submit" name="action">Send</button>
 </form>
+
+        

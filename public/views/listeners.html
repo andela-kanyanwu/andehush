@@ -1,7 +1,12 @@
-<h3>Listeners</h3>
+<h5>Click to chat with any of us. We are here for you.</h5>
 <div ng-init="getListeners()">
-<ul ng-repeat="listener in listeners track by $index">
-  <li>{{listener.username}}</li>
-  <a href="/chat/{{listener.username}}">Chat</a>
-</ul>
+  <div class="row" ng-repeat="listener in listeners track by $index">
+    <div class="col s12 m5">
+      <a href="/chat/{{listener.username}}">
+        <div class="card-panel white">
+          <span>{{listener.username}}</span>
+        </div>
+      </a>
+    </div>
+  </div>
 </div>
