@@ -1,9 +1,11 @@
 <h1>Chat</h1>
 <li ng-show="userDetails.username"><a href="#" ng-click="logout()">Log out</a></li>
-<div id="chat-wrap">
-  <p ng-repeat="msg in msgs track by $index">{{msg}}</p>
+<div id="chat-wrap" ng-repeat="msg in msgs track by $index">
+  <p>{{msg.room}}</p>
+  <p>{{msg.msg}}</p>
 </div>
-<form action="" ng-submit="chat()">
-  <input ng-model="chatInput"/>
+<!-- <div ng-bind="room_name"></div> -->
+<form ng-submit="chat()">
+  <input type="text" ng-model="chatInput"/>
   <input type="submit" value="Send"/>
 </form>

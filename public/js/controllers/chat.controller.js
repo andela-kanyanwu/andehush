@@ -1,21 +1,30 @@
 var app = angular.module('ChatCtrl', []);
 
-app.controller('ChatController', ['$scope', function($scope) {
+app.controller('ChatController', ['$scope', '$routeParams', '$timeout', function($scope, $routeParams, $timeout) {
   //redirect to chat window on click of the chat button
 
   var socket = io();
-
+  var name = Math.ceil((Math.random() * 20) + 1);
+  $scope.chatInput = '';
   $scope.msgs = [];
-
+  $scope.room_name = $routeParams.roomName;
+  $scope.chat_content = {
+    username: name
+  };
   $scope.chat = function() {
-    socket.emit('chat message', $scope.chatInput);
-    $scope.chatInput = "";
     event.preventDefault();
+    $scope.chat_content.msg = $scope.chatInput;
+    $scope.chat_content.room = $scope.room_name;
+    socket.emit('chat message', $scope.chat_content);
+    $scope.chatInput = "";
+
   }
 
   console.log(socket);
   socket.on('get msg', function(data) {
-    $scope.msgs.push(data);
-    $scope.$digest();
+    console.log(data);
+    $timeout(function() {
+      $scope.msgs.push(data);
+    });
   });
 }]);
