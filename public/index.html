@@ -13,12 +13,14 @@
 <body>
   <nav ng-controller="UserController">
     <div class="nav-wrapper #01579b light-blue darken-4">
-      <a href="/" class="brand-logo">ANDEHUSH</a>
+      <a href="/" class="brand-logo andehush">ANDEHUSH</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li ng-show="userDetails.username">{{userDetails.username}}</li>
         <li><a href="/login" ng-hide="userDetails.username">Login</a>
         </li>
         <li><a href="/becomeListener" ng-hide="userDetails.username">Register to be a listener</a>
+        </li>
+        <li><a href="/chat/{{userDetails.username}}" ng-show="userDetails.username">Chat</a>
         </li>
         <li><a href="#" ng-show="userDetails.username" ng-click="logout()">Log out</a>
         </li>

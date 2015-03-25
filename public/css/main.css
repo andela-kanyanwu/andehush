@@ -6,6 +6,9 @@ body {
 .main {
   flex: 1 0 auto;
 }
+.andehush {
+  padding-left: 10px !important;
+}
 li {
   list-style-type: none
 }
@@ -33,4 +36,13 @@ li {
   height: 700px;
   margin-bottom: -2%;
   margin-top: -2%;
+}
+
+/*.chat-messages {
+  overflow-y: auto;
+  height: 400px;
+}*/
+
+.error {
+  color: #b71c1c;
 }

@@ -1,5 +1,6 @@
 <h3>Chat</h3>
-<div id="chat-wrap" ng-repeat="msg in msgs track by $index">
+<div class="chat-messages">
+<div ng-repeat="msg in msgs track by $index">
   <div class="row">
     <div class="col s12 m5">
       <div class="card-panel white">
@@ -9,9 +10,12 @@
     </div>
   </div>
 </div>
-<form ng-submit="chat()">
-  <input type="text" ng-model="chatInput" />
+</div>
+<form class="col s12" ng-submit="chat()">
+  <div class="row">
+    <div class="input-field col s6">
+      <input type="text" ng-model="chatInput">
+    </div>
+  </div>
   <button class="btn waves-effect waves-light #01579b light-blue darken-4" type="submit" name="action">Send</button>
 </form>
-
-        

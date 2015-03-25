@@ -9,8 +9,6 @@ app.controller('UserController', ['$scope', 'UserFactory', '$location','$window'
 
   $scope.registerListener = function() {
 
-    $scope.message = "";
-
     var listenerInfo = {
         username: $scope.listenerUsername,
         password: $scope.listenerPassword
@@ -26,7 +24,9 @@ app.controller('UserController', ['$scope', 'UserFactory', '$location','$window'
           $rootScope.userDetails = data.user.username;
           $window.sessionStorage["userDetails"] = JSON.stringify( data.user );
           $location.path("/profile");
+          $nameErr = data.name;
         }
+        console.log(data.name);
 
       }).error(function(data, status) {
         console.log("Error: ", data, status);
@@ -55,6 +55,7 @@ app.controller('UserController', ['$scope', 'UserFactory', '$location','$window'
       }
     }).error(function(data, status) {
       console.log("Error: ", data, status);
+      $scope.error = status;
     });
   };
 
