@@ -4,7 +4,7 @@ app.controller('ChatController', ['$scope', '$routeParams', '$timeout', function
   //redirect to chat window on click of the chat button
 
   var socket = io();
-  var name = Math.ceil((Math.random() * 20) + 1);
+  var name = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
   $scope.chatInput = '';
   $scope.msgs = [];
   $scope.room_name = $routeParams.roomName;
