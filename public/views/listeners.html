@@ -1,7 +1,7 @@
 <h3>Listeners</h3>
 <div ng-init="getListeners()">
-<ul ng-repeat="listener in listeners">
+<ul ng-repeat="listener in listeners track by $index">
   <li>{{listener.username}}</li>
-  <button ng-click="changeLink()">Chat</button>
+  <a href="/chat/{{listener.username}}">Chat</a>
 </ul>
 </div>

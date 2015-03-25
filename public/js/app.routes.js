@@ -15,7 +15,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller: 'UserController'
   })
 
-  .when('/chat', {
+  .when('/chat/:roomName', {
     templateUrl: '../views/chat.html',
     controller: 'ChatController'
   })

@@ -76,8 +76,9 @@ app.controller('UserController', ['$scope', 'UserFactory', '$location','$window'
     })
   }
 
-  $scope.changeLink = function() {
-    $location.path("/chat");
-  }
+  // $scope.changeLink = function() {
+  //   $location.path("/chat");
+  //   console.log($scope.listeners);
+  // }
 
 }]);
