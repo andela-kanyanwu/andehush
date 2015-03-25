@@ -1,0 +1,36 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.main {
+  flex: 1 0 auto;
+}
+li {
+  list-style-type: none
+}
+.home-page {
+  background: url("../images/andehush-home.jpg") top center no-repeat;
+  background-size: cover; 
+  height: 700px;
+  margin-bottom: -20px;
+}
+.home-chat-button {
+  margin-top: 20%;
+}
+.profile-name h5, .profile-name a{
+  padding-right: 10px;
+  color: white;
+}
+
+.profile-name h5 {
+  margin-top: -25%;
+}
+
+.profile-page {
+  background: url("../images/profile-page.jpg") top center no-repeat;
+  background-size: cover; 
+  height: 700px;
+  margin-bottom: -2%;
+  margin-top: -2%;
+}
