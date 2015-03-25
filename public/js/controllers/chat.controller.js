@@ -17,7 +17,6 @@ app.controller('ChatController', ['$scope', '$routeParams', '$timeout', function
     $scope.chat_content.room = $scope.room_name;
     socket.emit('chat message', $scope.chat_content);
     $scope.chatInput = "";
-
   }
 
   console.log(socket);
