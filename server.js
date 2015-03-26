@@ -14,7 +14,8 @@ var express = require('express'),
    db = require('./config/db');
 
 //set default environment to development
-var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+var env = process.env.NODE_ENV || 'development';
+console.log(env);
 
 //var port = process.env.PORT || 8080;
 app.set('port', (process.env.PORT || 8080));
