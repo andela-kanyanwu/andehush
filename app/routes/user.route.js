@@ -1,17 +1,34 @@
 var express = require('express');
-
 var User = require('../controllers/user.controller');
-
 var router = express.Router();
+var passport = require('passport');
+var path = require('path');
 
-//create/register new user
-router.post('/user/new', User.addUser);
 
-// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
-router.get('/user', function(req, res) {
-  res.json({
-    message: 'hooray! welcome to our api!'
+router.get('/users', User.listUsers);
+
+router.get('/users/:user_id', User.getUserInfo);
+
+router.put('/users/:user_id', User.editUserInfo);
+
+router.delete('/users/:user_id', User.deleteUser);
+
+router.post('/users/new', passport.authenticate('local-signup', {
+}), function(req, res) {
+  res.status(201).json({
+    msg: "created successfully",
+    status: 201, 
+    user: req.user
   });
+});
+
+router.post('/users/login', passport.authenticate('local-login', {
+}), function(req, res) {
+  res.status(200).json({
+    msg: "login successfully",
+    status: 200,
+    user: req.user
+  })
 });
 
 module.exports = router;

@@ -1,0 +1,20 @@
+<div class="row">
+  <form class="col s12" ng-submit="login()">
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="first_name" type="text" class="validate" ng-model="listenerUsername">
+        <label for="first_name">Username</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="last_name" type="password" class="validate" ng-model="listenerPassword">
+        <label for="last_name">Password</label>
+      </div>
+    </div>
+    <button class="btn waves-effect waves-light #01579b light-blue darken-4" type="submit" name="action">Login</button>
+  </form>
+</div>
+<div ng-show="error">
+  <h5 class="error">Invalid username/password</h5>
+</div>

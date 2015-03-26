@@ -1,53 +1,66 @@
-//modules =================================================
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
-var mongoose = require('mongoose');
+var express = require('express'),
+   app = express(),
+   bodyParser = require('body-parser'),
+   methodOverride = require('method-override'),
+   mongoose = require('mongoose'),
+   http = require('http').Server(app),
+   passport = require('passport'),
+   flash = require('connect-flash'),
+   morgan = require('morgan'),
+   router = express.Router(),
+   cookieParser = require('cookie-parser'),
+   session = require('express-session'),
+   io = require('socket.io')(http),
+   db = require('./config/db');
 
-// configuration ===========================================
+//set default environment to development
+var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-// config files
-var db = require('./config/db');
-
-// set our port
 var port = process.env.PORT || 8080;
 
-// connect to our database
-var testCon = mongoose.connect(db.url);
-console.log(testCon);
+if (env === 'development') {
+  mongoose.connect(db.localUrl);
+}
+else {
+  mongoose.connect(db.productionUrl);
+}
 
-// get all data/stuff of the body (POST) parameters
-// parse application/json 
 app.use(bodyParser.json());
-
-// parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-// override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(methodOverride('X-HTTP-Method-Override'));
-
-// set the static files location /public/img will be /img for users
 app.use(express.static(__dirname + '/public'));
+app.use(passport.initialize());
 
-// ROUTES FOR OUR API
-// =============================================================================
 var userRoute = require('./app/routes/user.route');
+var chatRoute = require('./app/routes/chat.route');
 
-// more routes for our API will happen here
+app.use('/', userRoute);
+app.use('/', chatRoute);
 
-// REGISTER OUR ROUTES -------------------------------
-// all of our routes will be prefixed with /api
-app.use('/api', userRoute);
+app.get('*', function(req, res) {
+  res.sendFile( __dirname + '/public/index.html'); 
+});
 
-// start app ===============================================
-// startup our app at http://localhost:8080
-app.listen(port);
+app.use(morgan('dev')); 
+app.use(cookieParser()); 
 
-// shoutout to the user                     
+app.use(session({
+  secret: 'ilovescotchscotchyscotchscotch'
+})); 
+app.use(passport.session()); 
+app.use(flash());
+
+require('./config/passport')(passport); 
+
+http.listen(8080, function() {
+  console.log('listening on *:8080');
+});
+
+require('./socket.server')(io);
+                    
 console.log('Magic happens on port ' + port);
-
-// expose app           
+        
 exports = module.exports = app;

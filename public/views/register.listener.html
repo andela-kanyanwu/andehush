@@ -1,0 +1,19 @@
+<div class="row">
+  <form class="col s12" ng-submit="registerListener()">
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="first_name" type="text" class="validate" ng-model="listenerUsername">
+        <label for="first_name">Username</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="last_name" type="password" class="validate" ng-model="listenerPassword">
+        <label for="last_name">Password</label>
+      </div>
+    </div>
+    <button class="btn waves-effect waves-light #01579b light-blue darken-4" type="submit" name="action">Register</button>
+  </form>
+</div>
+<div ng-show="nameErr" class="error">Username already exists! Please use a different username</div>
+<div ng-show="textBoxUndefined" class="error">Fields cannot be left blank</div>
