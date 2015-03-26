@@ -32,7 +32,6 @@ var newUser = {
         res.send(err);
       }
 
-      //check if user does not exist
       else if (user === null) {
         res.json({
           message: 'User does not exist'
