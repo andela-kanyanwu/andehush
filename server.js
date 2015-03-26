@@ -16,7 +16,8 @@ var express = require('express'),
 //set default environment to development
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-var port = process.env.PORT || 8080;
+//var port = process.env.PORT || 8080;
+app.set('port', (process.env.PORT || 8080));
 
 if (env === 'development') {
   mongoose.connect(db.localUrl);
@@ -55,12 +56,10 @@ app.use(flash());
 
 require('./config/passport')(passport); 
 
-http.listen(8080, function() {
+http.listen(app.get('port'), function() {
   console.log('listening on *:8080');
 });
 
 require('./socket.server')(io);
-                    
-console.log('Magic happens on port ' + port);
         
 exports = module.exports = app;
