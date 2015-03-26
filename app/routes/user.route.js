@@ -14,7 +14,6 @@ router.put('/users/:user_id', User.editUserInfo);
 router.delete('/users/:user_id', User.deleteUser);
 
 router.post('/users/new', passport.authenticate('local-signup', {
-  failureRedirect: '/users/new',
 }), function(req, res) {
   res.status(201).json({
     msg: "created successfully",
@@ -24,8 +23,6 @@ router.post('/users/new', passport.authenticate('local-signup', {
 });
 
 router.post('/users/login', passport.authenticate('local-login', {
-  failureRedirect: '/users/login',
-  failureFlash: true
 }), function(req, res) {
   res.status(200).json({
     msg: "login successfully",

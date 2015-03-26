@@ -30,7 +30,6 @@ app.controller('ChatController', ['$scope', '$routeParams', '$timeout', '$window
         var req = data[$scope.roomName];
         roomKey = req.roomKey
         $timeout(function() {
-          console.log($scope.chats);
           $scope.chats[roomKey] = {
             chats: [],
             from: req.username,
@@ -43,17 +42,14 @@ app.controller('ChatController', ['$scope', '$routeParams', '$timeout', '$window
       roomKey = Chat.getRoomKey($scope.roomName);
       $scope.chatContent.roomKey = roomKey;
       chatRequest[$scope.roomName] = angular.copy($scope.chatContent);
-      console.log(chatRequest);
       socket.emit('chat-request', chatRequest);
     }
 
     socket.on('get msg', function(data) {
       $timeout(function() {
         $scope.msgs.push(data);
-        console.log(data);
       });
     });
-
   };
 
   $scope.chat = function() {

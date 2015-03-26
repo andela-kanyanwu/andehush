@@ -19,15 +19,13 @@ app.controller('UserController', ['$scope', 'User', '$location', '$window', '$ro
 
       User.create(listenerInfo).success(function(data) {
         if (data.status == 201) {
-          $rootScope.nameErr = data.name;
           $rootScope.userDetails = data.user.username;
           $window.sessionStorage["userDetails"] = JSON.stringify(data.user);
           $location.path("/profile");
         }
-        console.log(data.name);
 
       }).error(function(data, status) {
-        console.log("Error: ", data, status);
+        $scope.nameErr = status;
       });
     }
   }
@@ -42,14 +40,12 @@ app.controller('UserController', ['$scope', 'User', '$location', '$window', '$ro
     User.login(listenerInfo).success(function(data) {
       if (data.status === 200) {
         $location.path("/profile");
-        console.log(data.user.username);
         $rootScope.userDetails = data.user.username;
         $window.sessionStorage["userDetails"] = JSON.stringify(data.user);
       } else {
-        $location.path("/login")
+        $location.path("/login");     
       }
     }).error(function(data, status) {
-      console.log("Error: ", data, status);
       $scope.error = status;
     });
   };
