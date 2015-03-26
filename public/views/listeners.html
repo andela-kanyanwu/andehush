@@ -1,12 +1,18 @@
-<h5>Click to chat with any of us. We are here for you.</h5>
-<div ng-init="getListeners()">
-  <div class="row" ng-repeat="listener in listeners track by $index">
-    <div class="col s12 m5">
-      <a href="/chat/{{listener.username}}">
-        <div class="card-panel white">
-          <h5>{{listener.username}}</h5>
-        </div>
-      </a>
+<div class="listeners">
+  <h5>Click to chat with any of us. We are here for you.</h5>
+  <p>All chats are anonymous and private. You will be given a random username. Be careful not to reveal your identity.</p>
+  <div ng-init="getListeners()">
+    <div class="row" ng-repeat="listener in listeners track by $index">
+      <div class="col s12 m3">
+        <a href="/chat/{{listener.username}}">
+          <ul class="collection">
+            <li class="collection-item avatar">
+              <img src="../images/dummy_avatar.png" alt="" class="circle">
+              <h5>{{listener.username}}</h5>
+            </li>
+          </ul>
+        </a>
+      </div>
     </div>
   </div>
 </div>

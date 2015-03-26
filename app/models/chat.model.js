@@ -3,8 +3,9 @@ var Schema = mongoose.Schema;
 
 var chatSchema = new Schema({
   room: String,
+  roomId: String,
   username: String,
-  chatMsg: String,
+  message: String,
   date: {
     type: Date,
     default: Date.now
