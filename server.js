@@ -14,18 +14,19 @@ var express = require('express'),
    db = require('./config/db');
 
 //set default environment to development
-var env = process.env.NODE_ENV || 'development';
-console.log(env);
+// var env = process.env.NODE_ENV || 'development';
+// console.log(env);
 
 //var port = process.env.PORT || 8080;
 app.set('port', (process.env.PORT || 8080));
 
-if (env === 'development') {
-  mongoose.connect(db.localUrl);
-}
-else {
+  console.log(db.productionUrl);
+// if (env === 'development') {
+//   mongoose.connect(db.localUrl);
+// }
+// else {
   mongoose.connect(db.productionUrl);
-}
+// }
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
