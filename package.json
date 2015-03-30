@@ -17,9 +17,6 @@
     "cookie-parser": "~1.0.0",
     "express-session": "~1.0.0"   
   },
-  "scripts": {
-    "test": "say This is a node js project. It comprises mogoose ORM, express and a ton of modules that brings your fullstack project to life."
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/andela-kanyanwu/andehush.git"

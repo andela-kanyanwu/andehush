@@ -20,7 +20,6 @@ var express = require('express'),
 //var port = process.env.PORT || 8080;
 app.set('port', (process.env.PORT || 8080));
 
-  console.log(db.productionUrl);
 // if (env === 'development') {
 //   mongoose.connect(db.localUrl);
 // }
